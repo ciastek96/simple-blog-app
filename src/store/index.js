@@ -1,6 +1,18 @@
-import { configureStore } from "@reduxjs/toolkit";
-import postReducer from "../reducers/post";
+// import { configureStore } from "@reduxjs/toolkit";
+// import postReducer from "../reducers/post";
 
-export const store = configureStore({
-  reducer: { post: postReducer },
-});
+// export const store = configureStore({
+//   reducer: { post: postReducer },
+// });
+
+import { createStore, applyMiddleware, compose } from "redux";
+import thunk from "redux-thunk";
+import reducers from "../reducers";
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(
+  reducers,
+  /* preloadedState, */ composeEnhancers(applyMiddleware(thunk))
+);
+
+export default store;

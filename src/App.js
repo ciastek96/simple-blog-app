@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { getPosts } from "./reducers/post";
 import { routes } from "./routes";
 import RootView from "./views/RootView.js";
 import DetailsView from "./views/DetailsView.js";
