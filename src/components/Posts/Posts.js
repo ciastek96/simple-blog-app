@@ -10,6 +10,7 @@ const Posts = () => {
 
   if (isLoading) return <p>Loading</p>;
   if (!posts.lenght > 0) <p>No posts to display</p>;
+
   return (
     <div className={styles.wrapper}>
       {posts.map((post) => (
@@ -18,10 +19,10 @@ const Posts = () => {
           <Link to={`/post/${post.id}`}>
             <h2>{post.title}</h2>
           </Link>
-          <p>{post.body}</p>
+          {/* <p>{post.body}</p>
           <Link to={`/post/${post.id}`}>
             <Button>Więcej</Button>
-          </Link>
+          </Link> */}
         </div>
       ))}
     </div>

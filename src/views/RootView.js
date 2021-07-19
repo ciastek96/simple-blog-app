@@ -6,10 +6,6 @@ import Posts from "../components/Posts/Posts";
 import Header from "../components/Header/Header";
 
 const RootView = () => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getPosts());
-  }, []);
   return (
     <MainTemplate>
       <Header>simple blog.</Header>
