@@ -26,14 +26,14 @@ export const getComments = (id) => async (dispatch) => {
 
 export const addToFavorites = (data) => async (dispatch) => {
   try {
+    console.log(data);
     const favsList = localStorage.getItem("favorites")
       ? JSON.parse(localStorage.getItem("favorites"))
       : [];
     if (!favsList.some((el) => el.id === data.id)) {
       localStorage.setItem("favorites", JSON.stringify([...favsList, data]));
     }
-    // dispatch({ type: "ADD_FAVORITE", payload: data });
-    //console.log(data);
+    dispatch({ type: "ADD_FAVORITE", payload: data });
   } catch (error) {
     // dispatch({ type: "FETCH_COMMENTS_FAILURE", error });
     console.log(error);
@@ -52,7 +52,19 @@ export const removeFromFavorites = (data) => async (dispatch) => {
       );
     }
 
-    // dispatch({ type: "REMOVE_FAVORITE", payload: data });
+    dispatch({ type: "REMOVE_FAVORITE", payload: data });
+  } catch (error) {
+    // dispatch({ type: "FETCH_COMMENTS_FAILURE", error });
+    console.log(error);
+  }
+};
+
+export const setFavorites = () => async (dispatch) => {
+  try {
+    const favsList = localStorage.getItem("favorites")
+      ? JSON.parse(localStorage.getItem("favorites"))
+      : [];
+    dispatch({ type: "SET_FAVORITES", payload: favsList });
   } catch (error) {
     // dispatch({ type: "FETCH_COMMENTS_FAILURE", error });
     console.log(error);

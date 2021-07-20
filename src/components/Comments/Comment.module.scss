@@ -1,0 +1,43 @@
+.comment {
+  padding: 1rem 2rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  position: relative;
+}
+
+.author {
+  font-size: 13px;
+  color: #bbb;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.content {
+  font-size: 14px;
+}
+
+.button {
+  width: 42px;
+  height: 42px;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.heart,
+.heartActive {
+  fill: rebeccapurple;
+  opacity: 0.3;
+  transition: opacity 0.15s linear;
+}
+
+.heart {
+  fill: rebeccapurple;
+  &Active,
+  &:hover,
+  &:active {
+    opacity: 1;
+  }
+}

@@ -4,6 +4,7 @@ import { useParams, Link } from "react-router-dom";
 import { getComments } from "../actions/";
 import MainTemplate from "../templates/MainTemplate.js";
 import Button from "../components/Button/Button";
+import Post from "../components/Posts/Post";
 import Header from "../components/Header/Header";
 import Comments from "../components/Comments/Comments";
 import { routes } from "../routes/index.js";
@@ -15,8 +16,6 @@ const DetailsView = () => {
     (el) => el.id === parseInt(id, 10)
   );
   const comments = useSelector(({ comment }) => comment.comments);
-
-  console.log(comments);
 
   useEffect(() => {
     dispatch(getComments(id));
@@ -31,11 +30,7 @@ const DetailsView = () => {
 
       {currentPost ? (
         <div>
-          <div>
-            <p>added by: {currentPost.userId}</p>
-            <h2>{currentPost.title}</h2>
-            <p>{currentPost.body}</p>
-          </div>
+          <Post data={currentPost} />
           <Comments data={comments} />
         </div>
       ) : (
