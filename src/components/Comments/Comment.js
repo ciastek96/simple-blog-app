@@ -28,7 +28,7 @@ const Comment = ({ data }) => {
   return (
     <div className={styles.comment}>
       <HeartButton isPressed={isPressed} onClickFn={() => handleClick(data)} />
-      <p className={styles.comment__author}>Added by {data.email}</p>
+      <p className={styles.comment__author}>Dodano przez: {data.email}</p>
       <p className={styles.comment__title}>{data.name}</p>
       <p className={styles.comment__content}> {data.body}</p>
     </div>

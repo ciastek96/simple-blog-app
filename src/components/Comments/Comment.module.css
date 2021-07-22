@@ -7,6 +7,7 @@
 .comment__author {
   font-size: 13px;
   color: #bbb;
+  margin: 2rem 0 1rem;
 }
 
 .comment__title {
