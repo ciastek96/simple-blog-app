@@ -9,7 +9,7 @@ const initialState = {
   success: null,
 };
 
-const commentReducer = (comments = initialState, { type, payload, error }) => {
+const commentReducer = (comment = initialState, { type, payload, error }) => {
   switch (type) {
     case FETCH_COMMENTS_SUCCESS:
       return {
@@ -19,7 +19,7 @@ const commentReducer = (comments = initialState, { type, payload, error }) => {
       };
     case FETCH_COMMENTS_REQUEST:
       return {
-        ...comments,
+        ...comment,
         error: null,
         loading: true,
       };
@@ -29,7 +29,7 @@ const commentReducer = (comments = initialState, { type, payload, error }) => {
         loading: false,
       };
     default:
-      return comments;
+      return comment;
   }
 };
 

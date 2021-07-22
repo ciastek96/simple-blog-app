@@ -11,12 +11,12 @@ const favoriteReducer = (favorite = initialState, { type, payload }) => {
     case SET_FAVS_POSTS:
       return {
         ...favorite,
-        posts: [...payload],
+        posts: payload,
       };
     case SET_FAVS_COMMENTS:
       return {
         ...favorite,
-        comments: [...payload],
+        comments: payload,
       };
     default:
       return favorite;

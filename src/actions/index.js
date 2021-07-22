@@ -44,9 +44,8 @@ export const addCommentToFavs = (comment) => async (dispatch) => {
     if (!favsList.some((el) => el.id === comment.id)) {
       localStorage.setItem("comments", JSON.stringify([...favsList, comment]));
     }
-    dispatch({ type: "ADD_COMMENT_TO_FAVS", payload: comment });
+    dispatch({ type: "SET_FAVS_COMMENTS", payload: [...favsList, comment] });
   } catch (error) {
-    // dispatch({ type: "FETCH_COMMENTS_FAILURE", error });
     console.log(error);
   }
 };
@@ -62,9 +61,11 @@ export const removeCommentFromFavs = (comment) => async (dispatch) => {
         JSON.stringify([...favsList.filter((el) => el.id !== comment.id)])
       );
     }
-    dispatch({ type: "REMOVE_POST_FROM_FAVS", payload: data });
+    dispatch({
+      type: "SET_FAVS_COMMENTS",
+      payload: [...favsList.filter((el) => el.id !== comment.id)],
+    });
   } catch (error) {
-    // dispatch({ type: "FETCH_COMMENTS_FAILURE", error });
     console.log(error);
   }
 };
@@ -77,9 +78,8 @@ export const addPostToFavs = (post) => async (dispatch) => {
     if (!favsList.some((el) => el.id === post.id)) {
       localStorage.setItem("posts", JSON.stringify([...favsList, post]));
     }
-    dispatch({ type: "SET_FAVS_POSTS", payload: post });
+    dispatch({ type: "SET_FAVS_POSTS", payload: [...favsList, post] });
   } catch (error) {
-    // dispatch({ type: "FETCH_COMMENTS_FAILURE", error });
     console.log(error);
   }
 };
@@ -95,9 +95,11 @@ export const removePostFromFavs = (post) => async (dispatch) => {
         JSON.stringify([...favsList.filter((el) => el.id !== post.id)])
       );
     }
-    dispatch({ type: "SET_FAVS_POSTS", payload: post });
+    dispatch({
+      type: "SET_FAVS_POSTS",
+      payload: [...favsList.filter((el) => el.id !== post.id)],
+    });
   } catch (error) {
-    // dispatch({ type: "FETCH_COMMENTS_FAILURE", error });
     console.log(error);
   }
 };
@@ -109,7 +111,6 @@ export const setFavsComments = () => async (dispatch) => {
       : [];
     dispatch({ type: "SET_FAVS_COMMENTS", payload: favsList });
   } catch (error) {
-    // dispatch({ type: "FETCH_COMMENTS_FAILURE", error });
     console.log(error);
   }
 };
@@ -121,7 +122,6 @@ export const setFavsPosts = () => async (dispatch) => {
       : [];
     dispatch({ type: "SET_FAVS_POSTS", payload: favsList });
   } catch (error) {
-    // dispatch({ type: "FETCH_COMMENTS_FAILURE", error });
     console.log(error);
   }
 };

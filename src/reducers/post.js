@@ -25,7 +25,8 @@ const postReducer = (posts = initialState, { type, payload, error }) => {
       };
     case FETCH_POSTS_FAILURE:
       return {
-        error,
+        ...posts,
+        error: error,
         loading: false,
       };
     default:
@@ -34,46 +35,3 @@ const postReducer = (posts = initialState, { type, payload, error }) => {
 };
 
 export default postReducer;
-
-// export const fetchTodos = createAsyncThunk('todos/fetchTodos', async () => {
-//   const response = await client.get('/fakeApi/todos')
-//   return response.todos
-// })
-
-// export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
-//   const response = await fetch("https://jsonplaceholder.typicode.com/posts");
-//   return response.posts;
-// });
-
-// const postSlice = createSlice({
-//   name: "post",
-//   initialState,
-//   reducers: {
-//     postsLoading(state, action) {
-//       return {
-//         ...state,
-//         loading: true,
-//       };
-//     },
-//     getPosts(state, { payload }) {
-//       // state.value = payload;
-//     },
-//   },
-//   extraReducers: (builder) => {
-//     builder
-//       .addCase(fetchPosts.pending, (state, action) => {
-//         state.status = "loading";
-//       })
-//       .addCase(fetchPosts.fulfilled, (state, action) => {
-//         const newEntities = {};
-//         action.payload.forEach((todo) => {
-//           newEntities[todo.id] = todo;
-//         });
-//         state.entities = newEntities;
-//         state.status = "idle";
-//       });
-//   },
-// });
-
-// export const { postsLoading, getPosts } = postSlice.actions;
-// export default postSlice.reducer;

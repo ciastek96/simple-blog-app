@@ -1,0 +1,6 @@
+.notfound {
+  padding: 1rem 0 3rem;
+  display: grid;
+  place-items: center;
+  text-align: center;
+}

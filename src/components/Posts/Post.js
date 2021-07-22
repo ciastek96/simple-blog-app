@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addPostToFavs, removePostFromFavs } from "../../actions";
-import HeartButton from "../HeartButton/HeartButton";
 import { Link } from "react-router-dom";
 import styles from "./Post.module.css";
+import { addPostToFavs, removePostFromFavs } from "../../actions";
+import HeartButton from "../HeartButton/HeartButton";
 
 const Post = ({ data: { post, user }, detailsView }) => {
   const [isPressed, setIsPressed] = useState(false);
@@ -13,6 +13,8 @@ const Post = ({ data: { post, user }, detailsView }) => {
   useEffect(() => {
     if (favoritesList.some((fav) => fav.id === post.id)) {
       setIsPressed(true);
+    } else {
+      setIsPressed(false);
     }
   }, []);
 
@@ -31,8 +33,8 @@ const Post = ({ data: { post, user }, detailsView }) => {
       <p className={styles.post__author}>Added by: {user?.name}</p>
       {detailsView ? (
         <>
-          <h2>{post?.title}</h2>
-          <p>{post?.body}</p>
+          <h2>{post.title}</h2>
+          <p>{post.body}</p>
         </>
       ) : (
         <Link to={`/post/${post.id}`}>

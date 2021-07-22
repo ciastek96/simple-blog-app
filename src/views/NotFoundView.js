@@ -1,13 +1,11 @@
 import React from "react";
 import MainTemplate from "../templates/MainTemplate.js";
+import NotFound from "../components/NotFound/NotFound";
 
-const NotFoundView = () => {
-  return (
-    <MainTemplate>
-      <h1>404</h1>
-      <p>Strona o podanym adresie nie istnieje</p>
-    </MainTemplate>
-  );
-};
+const NotFoundView = () => (
+  <MainTemplate>
+    <NotFound />
+  </MainTemplate>
+);
 
 export default NotFoundView;
