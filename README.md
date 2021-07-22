@@ -1,4 +1,4 @@
-# Internship Task App
+# Task App
 
 This is a simple blog app created in React, Redux and CSS Modules.
 
