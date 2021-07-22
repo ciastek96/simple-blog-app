@@ -1,9 +1,11 @@
 .button {
+  width: 82px;
   border: 0;
   padding: 0.5rem 1rem;
   background-color: #561aa1;
   color: white;
   text-transform: lowercase;
+  text-align: center;
   font-family: "Poppins";
   font-size: 12px;
   cursor: pointer;

@@ -18,3 +18,13 @@ p {
   color: #323947;
   font-weight: 400;
 }
+
+a {
+  display: block;
+  text-decoration: none;
+  color: black;
+}
+
+a:visited {
+  color: rebeccapurple;
+}
