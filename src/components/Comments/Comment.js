@@ -1,42 +1,36 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addToFavorites, removeFromFavorites } from "../../actions";
-import HeartIcon from "../../assets/icons/Heart.svg";
-import styles from "./Comment.module.scss";
+import { addCommentToFavs, removeCommentFromFavs } from "../../actions";
+import styles from "./Comment.module.css";
+import HeartButton from "../HeartButton/HeartButton";
 
 const Comment = ({ data }) => {
-  const [isFav, setIsFav] = useState(false);
+  const [isPressed, setIsPressed] = useState(false);
   const dispatch = useDispatch();
-  const favList = useSelector((state) => state.favorite.favorites);
+  const favoritesList = useSelector((state) => state.favorite.comments);
 
   useEffect(() => {
-    if (favList.some((fav) => fav.id === data.id)) {
-      setIsFav(true);
+    if (favoritesList.some((fav) => fav.id === data.id)) {
+      setIsPressed(true);
     }
   }, []);
 
   const handleClick = (el) => {
-    if (isFav) {
-      setIsFav(false);
-      dispatch(removeFromFavorites(el));
+    if (isPressed) {
+      setIsPressed(false);
+      dispatch(removeCommentFromFavs(el));
     } else {
-      setIsFav(true);
-      dispatch(addToFavorites(el));
+      setIsPressed(true);
+      dispatch(addCommentToFavs(el));
     }
   };
 
   return (
     <div className={styles.comment}>
-      <button onClick={() => handleClick(data)} className={styles.button}>
-        {isFav ? (
-          <HeartIcon className={styles.heartActive} />
-        ) : (
-          <HeartIcon className={styles.heart} />
-        )}
-      </button>
-      <p className={styles.author}> {data.email}</p>
-      <p className={styles.title}>{data.name}</p>
-      <p className={styles.content}> {data.body}</p>
+      <HeartButton isPressed={isPressed} onClickFn={() => handleClick(data)} />
+      <p className={styles.comment__author}>Added by {data.email}</p>
+      <p className={styles.comment__title}>{data.name}</p>
+      <p className={styles.comment__content}> {data.body}</p>
     </div>
   );
 };

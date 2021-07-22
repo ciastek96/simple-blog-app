@@ -1,14 +1,21 @@
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { getPosts, setFavorites } from "../actions/index";
+import React from "react";
+import styles from "./MainTemplate.module.css";
+import Loading from "../providers/Loading";
+import Loader from "../components/Loader/Loader";
 
 const MainTemplate = ({ children }) => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getPosts());
-    dispatch(setFavorites());
-  }, []);
-  return <>{children}</>;
+  return (
+    <>
+      <Loading
+        render={({ isLoading }) => (
+          <>
+            {isLoading && <Loader />}
+            <div className={styles.wrapper}>{children}</div>
+          </>
+        )}
+      />
+    </>
+  );
 };
 
 export default MainTemplate;

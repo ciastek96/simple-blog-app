@@ -12,26 +12,29 @@ import { routes } from "../routes/index.js";
 const DetailsView = () => {
   const dispatch = useDispatch();
   let { id } = useParams();
-  const currentPost = useSelector(({ post }) => post.posts).find(
+  const post = useSelector(({ post }) => post.posts).find(
     (el) => el.id === parseInt(id, 10)
+  );
+  const user = useSelector((state) => state.user.users).find(
+    (el) => el.id === post?.userId
   );
   const comments = useSelector(({ comment }) => comment.comments);
 
   useEffect(() => {
     dispatch(getComments(id));
-  }, []);
+  }, [dispatch]);
 
   return (
     <MainTemplate>
-      <Header>ID: {id}</Header>
+      <Header path="/">simple blog.</Header>
+
       <Link to={routes.home}>
         <Button>powrót</Button>
       </Link>
-
-      {currentPost ? (
+      {post ? (
         <div>
-          <Post data={currentPost} />
-          <Comments data={comments} />
+          <Post data={{ post, user }} detailsView="true" />
+          <Comments data={comments} title="Komentarze" />
         </div>
       ) : (
         <p>Nie znaleziono artykułu o podanym ID</p>

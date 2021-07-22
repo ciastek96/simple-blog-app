@@ -5,16 +5,16 @@ import Post from "./Post";
 
 const Posts = () => {
   const posts = useSelector((state) => state.post.posts);
-  const isLoading = useSelector((state) => state.post.loading);
+  const users = useSelector((state) => state.user.users);
 
-  if (isLoading) return <p>Loading</p>;
   if (!posts.lenght > 0) <p>No posts to display</p>;
 
   return (
-    <div className={styles.wrapper}>
-      {posts.map((post) => (
-        <Post key={post.id} data={post} />
-      ))}
+    <div>
+      {posts.map((post) => {
+        const user = users.find((user) => user.id === post.userId);
+        if (user) return <Post key={post.id} data={{ user, post }} />;
+      })}
     </div>
   );
 };

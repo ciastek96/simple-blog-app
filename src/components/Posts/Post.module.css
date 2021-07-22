@@ -1,4 +1,10 @@
 .post {
   padding: 1rem 2rem 3rem;
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  position: relative;
+}
+
+.post__author {
+  font-size: 14px;
+  color: #bbb;
 }

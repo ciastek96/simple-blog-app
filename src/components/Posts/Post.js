@@ -1,14 +1,44 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addPostToFavs, removePostFromFavs } from "../../actions";
+import HeartButton from "../HeartButton/HeartButton";
 import { Link } from "react-router-dom";
-import styles from "./Post.module.scss";
+import styles from "./Post.module.css";
 
-const Post = ({ data }) => {
+const Post = ({ data: { post, user }, detailsView }) => {
+  const [isPressed, setIsPressed] = useState(false);
+  const dispatch = useDispatch();
+  const favoritesList = useSelector((state) => state.favorite.posts);
+
+  useEffect(() => {
+    if (favoritesList.some((fav) => fav.id === post.id)) {
+      setIsPressed(true);
+    }
+  }, []);
+
+  const handleClick = (el) => {
+    if (isPressed) {
+      setIsPressed(false);
+      dispatch(removePostFromFavs(el));
+    } else {
+      setIsPressed(true);
+      dispatch(addPostToFavs(el));
+    }
+  };
   return (
     <div className={styles.post}>
-      <p>added by: {data.userId}</p>
-      <Link to={`/post/${data.id}`}>
-        <h2>{data.title}</h2>
-      </Link>
+      <HeartButton isPressed={isPressed} onClickFn={() => handleClick(post)} />
+      <p className={styles.post__author}>Added by: {user?.name}</p>
+      {detailsView ? (
+        <>
+          <h2>{post?.title}</h2>
+          <p>{post?.body}</p>
+        </>
+      ) : (
+        <Link to={`/post/${post.id}`}>
+          <h2>{post.title}</h2>
+        </Link>
+      )}
     </div>
   );
 };

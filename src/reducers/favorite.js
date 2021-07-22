@@ -1,28 +1,22 @@
-const ADD_FAVORITE = "ADD_FAVORITE";
-const REMOVE_FAVORITE = "REMOVE_FAVORITE";
-const SET_FAVORITES = "SET_FAVORITES";
+const SET_FAVS_POSTS = "SET_FAVS_POSTS";
+const SET_FAVS_COMMENTS = "SET_FAVS_COMMENTS";
 
 const initialState = {
-  favorites: [],
+  posts: [],
+  comments: [],
 };
 
 const favoriteReducer = (favorite = initialState, { type, payload }) => {
   switch (type) {
-    case ADD_FAVORITE:
+    case SET_FAVS_POSTS:
       return {
-        favorites: [...favorite.favorites, payload],
+        ...favorite,
+        posts: [...payload],
       };
-    case REMOVE_FAVORITE:
+    case SET_FAVS_COMMENTS:
       return {
-        favorites: [
-          ...favorite.favorites.filter(
-            (favorite) => favorite.id !== payload.id
-          ),
-        ],
-      };
-    case SET_FAVORITES:
-      return {
-        favorites: [...payload],
+        ...favorite,
+        comments: [...payload],
       };
     default:
       return favorite;
